@@ -6,7 +6,7 @@ import base64
 import io
 
 import json
-
+from decimal import *
 
 '''
 EmoPY
@@ -81,7 +81,7 @@ def get_face_detection2(request, fd):
 	vals = []
 	for key, val in emodict.items():
 		labels.append(key)
-		vals.append(val)
+		vals.append(Decimal(val))
 
 
 
