@@ -29,6 +29,28 @@ class FaceDetector:
 	# TODO: format these keypoints a bit
 
 	# This is mostly a testing method for now, assumes that img is RGB(A) and 450x600x3(4)
+	def detect_and_draw_loc(self, img, loc, face_size, size=3):
+		img = np.copy(img[...,:3]) # cut off alpha channel if it exists
+		#center_part = img[150:300,225:375] # clip out the center 150x150
+		#center_part = img[loc[0]:325,200:400] # clip out the center 150x150
+		target_part = img[loc[0]:loc[0]+face_size, loc[1]:loc[1]+face_size]
+		kp = self.identify_keypoints(imresize(target_part,(96,96)))
+		for kp_x, kp_y in zip(kp[::2],kp[1::2]):
+			#kp_x_real = int(225 + 75 + 75 * kp_x)
+			#kp_y_real = int(150 + 75 + 75 * kp_y)
+			kp_x_real = int(loc[1] + face_size/2 + (face_size/2) * kp_x)
+			kp_y_real = int(loc[0] + face_size/2 + (face_size/2) * kp_y)
+			try:
+				img[kp_y_real-size:kp_y_real+size+1, kp_x_real-size:kp_x_real+size+1] = 255,0,0
+			except:
+				pass
+		img[loc[0]:loc[0]+2,loc[1]:loc[1]+face_size] = 255,0,0
+		img[loc[0]+face_size-2:loc[0]+face_size,loc[1]:loc[1]+face_size] = 255,0,0
+		img[loc[0]:loc[0]+face_size,loc[1]:loc[1]+2] = 255,0,0
+		img[loc[0]:loc[0]+face_size,loc[1]+face_size-2:loc[1]+face_size] = 255,0,0
+		return img
+
+
 	def detect_and_draw(self, img, size=3):
 		img = np.copy(img[...,:3]) # cut off alpha channel if it exists
 		#center_part = img[150:300,225:375] # clip out the center 150x150
