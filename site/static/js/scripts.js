@@ -112,6 +112,12 @@
 		if (data.emote_score){
 			emote_score = data.emote_score;
 			face_score = data.face_score;
+			if (((emote_score + face_score) / 2) > 0.8){
+				alertify
+				.alert("FUck mE.", function(){
+					alertify.message('OK');
+				});
+			}
 			// document.getElementById("scorebox").setText(data.emote_score);
 			var ctx = document.getElementById("scoreChart").getContext("2d");
 			console.log("emote: " + data.emote_score);
