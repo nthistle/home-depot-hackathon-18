@@ -112,6 +112,9 @@
 		if (data.emote_score){
 			emote_score = data.emote_score;
 			face_score = data.face_score;
+			if (((emote_score + face_score) / 2) > 0.6){
+					alertify.success('You got it!');
+			}
 			// document.getElementById("scorebox").setText(data.emote_score);
 			var ctx = document.getElementById("scoreChart").getContext("2d");
 			console.log("emote: " + data.emote_score);
@@ -131,7 +134,12 @@
 									'rgba(255,99,132,1)',
 									'rgba(54, 162, 235, 1)',
 							],
-							borderWidth: 1
+							borderWidth: 1,
+							fontColor: [
+								'rgba(255, 99, 132, 1)',
+								'rgba(54, 162, 235, 1)',
+								
+							],
 						}]
 				},
 				options: {

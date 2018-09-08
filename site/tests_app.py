@@ -57,9 +57,10 @@ class TestApp(unittest.TestCase):
     from normalize import scale
     self.assertEqual(scale(2.4, (64, 34), (36, 34)), ((83, 34), (16, 34)))
   
-  # def test_normalize_factor(self): #finds factor (of size) between two feature points 
-  #   from normalize import find_factor
-    # self.assertEqual(orig_feat_point, our_feat_point):
+  def test_normalize_factor(self): #finds factor (of size) between two feature points 
+    from normalize import find_factor
+    self.assertEqual(find_factor(((0, 1), (-3, 2)), ((3, 4), (9, -3))), 0.3429971702850177)
+  
 
 # runs the unit tests in the module
 if __name__ == '__main__':
