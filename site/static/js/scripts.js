@@ -104,7 +104,23 @@
 	  if(data.face_present){
 	  	//console.log(data.image);
 	  	photo.setAttribute('src', data.image);
-	  }
+		}
+		var ctx = document.getElementById("emotionChart");
+		if (data.emodict){
+			var myChart = new Chart(ctx, {
+				type: 'bar',
+				data: data.emodict,
+				options: {
+						scales: {
+								yAxes: [{
+										ticks: {
+												beginAtZero:true
+										}
+								}]
+						}
+				}
+		});
+		}
 	  takepicture();
 	}
 

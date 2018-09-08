@@ -91,8 +91,8 @@ def get_face_detection2(request, fd):
 	#drawn_img = fd.detect_and_draw(img, 2)
 
 	drawn_img[:,:,0], drawn_img[:,:,2] = drawn_img[:,:,2].copy(), drawn_img[:,:,0].copy()
-	return json.dumps({"face_present":True, "image":image_to_b64(drawn_img)})
-
+	return json.dumps({"face_present":True, "image":image_to_b64(drawn_img), "emodict":emodict})
+# return json.dumps({"face_present":True, "image":image_to_b64(drawn_img), "emodictlabels":emodict.keys(), "emodictvals": [x[1] for x in list(emodict.items())]})
 
 def get_face_detection(request):
 
