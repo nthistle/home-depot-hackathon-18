@@ -116,7 +116,7 @@
 				data: {
 						labels: ["Emotion", "Position"],
 						datasets: [{
-								data: [data.emote_score, 0.5],
+								data: [data.emote_score, 0],
 								backgroundColor: [
 									'rgba(255, 99, 132, 0.2)',
 									'rgba(54, 162, 235, 0.2)',
@@ -131,6 +131,16 @@
 				},
 				options: {
 					animation: false,
+					scales: {
+						xAxes: [{
+								display: true,
+								ticks: {
+										suggestedMax: 1,    // minimum will be 0, unless there is a lower value.
+										// OR //
+										beginAtZero: true   // minimum value will be 0.
+								}
+						}]
+				}
 				}
 		});
 		}
