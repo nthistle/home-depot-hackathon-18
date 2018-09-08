@@ -106,12 +106,15 @@
 	  	photo.setAttribute('src', data.image);
 		}
 		var ctx = document.getElementById("emotionChart");
-		if (data.emodict){
-			console.log(data.emodict);
-			// var myChart = new Chart(ctx, {
-			// 	type: 'bar',
-			// 	data: data.emodict,
-			// });
+		if (data.labels){
+			console.log(data.labels);
+			var myChart = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: data.labels,
+					data: data.vals,
+				},
+			});
 		}
 	  takepicture();
 	}
