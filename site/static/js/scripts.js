@@ -105,7 +105,7 @@
 	  	//console.log(data.image);
 	  	photo.setAttribute('src', data.image);
 		}
-		var ctx = document.getElementById("emotionChart");
+		var ctx = document.getElementById("emotionChart").getContext("2d");
 		if (data.labels){
 			console.log(data.labels);
 			var myChart = new Chart(ctx, {
