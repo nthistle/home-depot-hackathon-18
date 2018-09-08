@@ -110,12 +110,13 @@
 		}
 		if (data.emote_score){
 			var ctx = document.getElementById("scoreChart").getContext("2d");
-			console.log(data.emote_score);
+			console.log(data.labs);
 			var myChart = new Chart(ctx, {
 				type: 'horizontalBar',
 				data: {
+						labels: ["Emotion", "Position"],
 						datasets: [{
-								data: data.emote_score,
+								data: [data.emote_score, 0.5],
 								backgroundColor: [
 									'rgba(255, 99, 132, 0.2)',
 									'rgba(54, 162, 235, 0.2)',
