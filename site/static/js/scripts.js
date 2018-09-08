@@ -109,7 +109,7 @@
 	  	photo.setAttribute('src', data.image);
 		}
 		if (data.emote_score){
-			document.getElementById("scorebox").setText(data.emote_score);
+			// document.getElementById("scorebox").setText(data.emote_score);
 			var ctx = document.getElementById("scoreChart").getContext("2d");
 			console.log(data.emote_score);
 			var myChart = new Chart(ctx, {
