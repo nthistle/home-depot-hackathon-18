@@ -3,3 +3,7 @@ body{
 	color: #181919;
 	font-family: 'Raleway', sans-serif;
 }
+
+#output{
+	display: none;
+}

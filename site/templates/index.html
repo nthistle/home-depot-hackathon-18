@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-
 	<link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
-
-
-
     <title>Face Matcher</title>
+
 </head>
 <body>
 
@@ -18,9 +14,15 @@
 		Face Matcher
 	</h1>
 
-	<video id="video" width="640" height="480" autoplay></video>
-	<button id="snap">Snap Photo</button>
-	<canvas id="canvas" width="640" height="480"></canvas>
+	<div class="camera">
+		<video id="video" muted="muted">Video stream not available.</video>
+		<button id="startbutton">Take photo</button>
+	</div>
+
+	<div class="output">
+		<canvas id="canvas"></canvas>
+		<img id="photo">
+	</div>
 
 
 	<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
