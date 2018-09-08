@@ -110,7 +110,7 @@ class FERModel:
         return load_model(model_file), emotion_map
 
     def _print_prediction(self, prediction):
-        normalized_prediction = [x/3 for x in normalized_prediction if x is max(normalized_prediction)
+        normalized_prediction = [x/3 for x in normalized_prediction if x is max(normalized_prediction)]
         normalized_prediction = [x/sum(prediction) for x in prediction]
         for emotion in self.emotion_map.keys():
             print('%s: %.1f%%' % (emotion, normalized_prediction[self.emotion_map[emotion]]*100))
