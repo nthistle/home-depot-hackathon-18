@@ -113,7 +113,6 @@
 				data: {
 						labels: data.labs,
 						datasets: [{
-								label: 'Emotion displayed',
 								data: data.vals,
 								backgroundColor: [
 									'rgba(255, 99, 132, 0.2)',
