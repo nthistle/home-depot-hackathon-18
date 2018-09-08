@@ -97,18 +97,19 @@ def get_face_detection2(request, fd, model, cur_emote_profile):
 
 	good_stuff = {"face_present":True, "image":image_to_b64(drawn_img), "labs":labels, "vals": vals}
 
-	if cur_emote_profile != None:
+	if not cur_emote_profile is None:
 		within_range = 0.1
 		in_range_count = 0
 		of_possible = 0
-		for a,b in zip(pdict, cur_emote_profile):
-			if abs(a-b) < within_range:
-				in_range_count += 1
-			else:
-				in_range_count += (1 - (abs(a-b)-within_range)) * 0.5
+		for a,b in zip(pdict[0], cur_emote_profile[0]):
 			if b > within_range:
+				if abs(a-b) < within_range:
+					in_range_count += 1
+				else:
+					in_range_count += (1 - (abs(a-b)-within_range)) * 0.5
 				of_possible += 1
 		good_stuff["emote_score"] = (in_range_count / of_possible)
+		print("EMOTE_SCORE:",good_stuff["emote_score"])
 
 	return json.dumps(good_stuff)
 
