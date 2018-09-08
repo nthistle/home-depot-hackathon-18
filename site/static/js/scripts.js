@@ -112,8 +112,12 @@
 		if (data.emote_score){
 			emote_score = data.emote_score;
 			face_score = data.face_score;
-			if (((emote_score + face_score) / 2) > 0.8){
-					//alertify.success('You got it!');
+			var ts = (new Date()).getTime();
+			if ( (ts > lasttime + 2000) && ((emote_score + face_score) / 2) > 0.6){
+					lasttime = ts;
+					$.notify("You got it!","success");
+					curscore += 100
+					document.getElementById("scorebox").innerHTML = "" + curscore;
 					fetch_and_update();
 			}
 			// document.getElementById("scorebox").setText(data.emote_score);
@@ -135,7 +139,12 @@
 									'rgba(255,99,132,1)',
 									'rgba(54, 162, 235, 1)',
 							],
-							borderWidth: 1
+							borderWidth: 1,
+							fontColor: [
+								'rgba(255, 99, 132, 1)',
+								'rgba(54, 162, 235, 1)',
+								
+						],
 						}]
 				},
 				options: {
@@ -170,7 +179,8 @@
   window.addEventListener('load', startup, false);	
 })();
 
-
+  let curscore = 0;
+  let lasttime = 0;
   let counter = 0;
 
   function fetch_and_update() {
