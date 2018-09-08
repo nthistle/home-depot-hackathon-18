@@ -19,12 +19,12 @@ CORS(app)
 fd = FaceDetector("model.h5")
 fd.load_model()
 
-@app.route("/")
+@app.route("/game")
 def serve_main_page():
 	return render_template("index.html")
 
 
-@app.route("/landing")
+@app.route("/")
 def serve_landing():
 	return render_template("landing.html")
 
