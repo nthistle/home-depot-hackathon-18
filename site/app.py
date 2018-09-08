@@ -98,11 +98,17 @@ def get_emote_pf(m):
 	return pdict, kpp
 
 
-
 imlist = ["rosen.png", "rosh.png", "pratt.png", "001.png", "002.png", "003.png", "004.png", "005.png"]
 
 @app.route("/get_target/<num>")
 def get_target(num):
+
+
+	###########################################################
+	assert request.path == "/get_target/"
+	assert num <= len(imlist)
+	###########################################################
+
 	global cur_emote_profile, cur_face_profile
 	imm = "static/img/" + imlist[int(num)]
 
@@ -113,6 +119,13 @@ def get_target(num):
 
 @app.route("/update_to/<num>")
 def update_to(num):
+
+
+	###########################################################
+	assert request.path == "/update_to/"
+	assert num <= len(imlist)
+	###########################################################
+
 	global cur_emote_profile, cur_face_profile
 	imm = "static/img/" + imlist[int(num)]
 	cur_emote_profile, cur_face_profile = get_emote_pf(imm)
