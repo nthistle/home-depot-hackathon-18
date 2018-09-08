@@ -7,6 +7,7 @@ import io
 
 import json
 
+
 '''
 EmoPY
 '''
@@ -24,10 +25,16 @@ EmoPY
 #import graphviz
 
 
-from fermodel import FERModel
+#from fermodel import FERModel
 
-target_emotions = ['anger', 'fear', 'surprise', 'calm']
-model = FERModel(target_emotions, verbose=True)
+#target_emotions = ['anger', 'fear', 'surprise', 'calm']
+#model = FERModel(target_emotions, verbose=True)
+from PIL import Image
+from keras.models import load_model
+
+model = load_model("emotemodel.h5")
+
+from scipy.misc import imresize
 
 
 def get_face_detection2(request, fd):
@@ -50,7 +57,8 @@ def get_face_detection2(request, fd):
 	'''
 	EMO	
 	'''
-	print(model.predict(img))
+
+	#print(model.predict(img))
 	'''
 	No emo
 	'''
@@ -58,7 +66,29 @@ def get_face_detection2(request, fd):
 	#target_face = (target_face[0], target_face[1]+int(0.05*target_face[3]), target_face[2], int(1.05*target_face[3]))
 	target_face = (target_face[0], target_face[1], target_face[2], int(1.05*target_face[3]))
 	target_face_center = (target_face[0] + target_face[2]//2, target_face[1] + target_face[3]//2)
-	drawn_img = fd.detect_and_draw_loc(img, target_face[:2][::-1], max(target_face[2:]), 2)
+	face_size = int(1.05*max(target_face[2:]))
+	loc = (target_face_center[1] - face_size//2, target_face_center[0] - face_size//2)
+	#drawn_img = fd.detect_and_draw_loc(img, target_face[:2][::-1], max(target_face[2:]), 2)
+	drawn_img = fd.detect_and_draw_loc(img, loc, face_size, 2)
+
+	face_cropped = img[loc[0]:loc[0]+face_size,loc[1]:loc[1]+face_size]
+
+	face_cropped_small = imresize(face_cropped, (48,48)).astype(np.float64)
+	face_cropped_small_gray = 0.15 * face_cropped_small[:,:,0] + 0.65 * face_cropped_small[:,:,1] + 0.2 * face_cropped_small[:,:,2]
+	face_emote_ready = face_cropped_small_gray/255.
+
+	pdict = model.predict(face_emote_ready[None,:,:,None])
+	kill_me = ['angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral']
+	for i in range(len(kill_me)):
+		print(kill_me[i],"%0.3f"%pdict[0,i])
+	print()
+
+	#Image.fromarray(face_cropped).show()
+
+	#sz = max(target_face[2:])
+	#Image.fromarray(face_cropped).show()
+	#print(model.predict(face_cropped))
+
 
 	#drawn_img = fd.detect_and_draw(img, 2)
 
