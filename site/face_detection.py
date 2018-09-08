@@ -7,6 +7,7 @@ import io
 
 import json
 from decimal import *
+from normalize import *
 
 '''
 EmoPY
