@@ -54,14 +54,6 @@ def get_face_detection2(request, fd):
 
 	#print("YO THERE IS A FACE")
 
-	'''
-	EMO	
-	'''
-
-	#print(model.predict(img))
-	'''
-	No emo
-	'''
 	target_face = faces[0]
 	#target_face = (target_face[0], target_face[1]+int(0.05*target_face[3]), target_face[2], int(1.05*target_face[3]))
 	target_face = (target_face[0], target_face[1], target_face[2], int(1.05*target_face[3]))
@@ -77,11 +69,17 @@ def get_face_detection2(request, fd):
 	face_cropped_small_gray = 0.15 * face_cropped_small[:,:,0] + 0.65 * face_cropped_small[:,:,1] + 0.2 * face_cropped_small[:,:,2]
 	face_emote_ready = face_cropped_small_gray/255.
 
+	emodict = {}
 	pdict = model.predict(face_emote_ready[None,:,:,None])
 	kill_me = ['angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral']
 	for i in range(len(kill_me)):
 		print(kill_me[i],"%0.3f"%pdict[0,i])
+		emodict[kill_me[i]] = pdict[0,i]
 	print()
+	
+
+
+
 
 	#Image.fromarray(face_cropped).show()
 
