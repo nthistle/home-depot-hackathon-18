@@ -23,6 +23,13 @@ import h5py
 import pydot
 import graphviz
 
+
+from fermodel import FERModel
+
+model = FERModel(target_emotions, verbose=True)
+target_emotions = ['anger', 'fear', 'surprise', 'calm']
+
+
 def get_face_detection2(request, fd):
 
 	b64_str = process_request_to_b64(request)
@@ -40,6 +47,13 @@ def get_face_detection2(request, fd):
 
 	#print("YO THERE IS A FACE")
 
+	'''
+	EMO	
+	'''
+	print(model.predict(img))
+	'''
+	No emo
+	'''
 	target_face = faces[0]
 	#target_face = (target_face[0], target_face[1]+int(0.05*target_face[3]), target_face[2], int(1.05*target_face[3]))
 	target_face = (target_face[0], target_face[1], target_face[2], int(1.05*target_face[3]))
