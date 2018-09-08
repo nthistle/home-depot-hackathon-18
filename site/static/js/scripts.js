@@ -148,7 +148,7 @@
 
   // Set up our event listener to run the startup process
   // once loading is complete.
-  window.addEventListener('load', startup, false);
+  window.addEventListener('load', startup, false);	
 })();
 
 
@@ -157,8 +157,10 @@
   function fetch_and_update() {
   	console.log('trying with counter=' + counter);
   	document.getElementById('targetim').setAttribute('src', "http://localhost:5000/get_target/" + counter);
+  	
+  	var xhr = new XMLHttpRequest();
+  	xhr.open("GET", "http://localhost:5000/update_to/" + counter);
+  	xhr.send(null);
+
   	counter += 1;
-  	//var xhr = new XMLHttpRequest;
-  	//xhr.open("GET", "http://localhost:5000/get_target/" + counter)
-  	//xhr.
   }
