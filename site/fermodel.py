@@ -3,6 +3,7 @@ import cv2
 from scipy import misc
 import numpy as np
 import json
+import operator
 
 class FERModel:
     """
@@ -110,8 +111,9 @@ class FERModel:
         return load_model(model_file), emotion_map
 
     def _print_prediction(self, prediction):
-        normalized_prediction = [x/3 for x in prediction if x is max(prediction)]
         normalized_prediction = [x/sum(prediction) for x in prediction]
+        # maxEm = max(self.emotion_map.items(), key=operator.itemgetter(1))[0]
+        # self.emotion_map[maxEm] = self.emotion_map[maxEm] * .2
         for emotion in self.emotion_map.keys():
             print('%s: %.1f%%' % (emotion, normalized_prediction[self.emotion_map[emotion]]*100))
         dominant_emotion_index = np.argmax(prediction)
