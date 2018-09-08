@@ -6,6 +6,9 @@ CORS(app)
 
 @app.route("/")
 def serve_main_page():
-	return "wow look at this page"
+	return render_template("index.html")
 
 
+@app.route("/api")
+def serve_api():
+	print("serving the api......")
