@@ -141,7 +141,7 @@ body {
 
 .scorepanel {
   position: absolute;
-  width: 619px;
+  width: 604px;
   left: 500px;
   top: 15px;
   bottom: 15px;
@@ -162,7 +162,7 @@ h2 {
 }
 
 .matchpanel {
-  width: 30%;
+  width: 504px;
   position: absolute;
   right: 30px;
   top: 15px;
