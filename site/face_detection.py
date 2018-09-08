@@ -81,7 +81,7 @@ def get_face_detection2(request, fd):
 	vals = []
 	for key, val in emodict.items():
 		labels.append(key)
-		vals.append(Decimal(val))
+		vals.append(Decimal(float(val)))
 
 
 
