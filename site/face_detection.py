@@ -6,7 +6,7 @@ import base64
 import io
 
 import json
-
+from decimal import *
 
 '''
 EmoPY
@@ -77,7 +77,11 @@ def get_face_detection2(request, fd):
 		emodict[kill_me[i]] = pdict[0,i]
 	print()
 	
-
+	labels = []
+	vals = []
+	for key, val in emodict.items():
+		labels.append(key)
+		vals.append(int(100 * float(val)))
 
 
 
@@ -91,8 +95,8 @@ def get_face_detection2(request, fd):
 	#drawn_img = fd.detect_and_draw(img, 2)
 
 	drawn_img[:,:,0], drawn_img[:,:,2] = drawn_img[:,:,2].copy(), drawn_img[:,:,0].copy()
-	return json.dumps({"face_present":True, "image":image_to_b64(drawn_img)})
-
+	return json.dumps({"face_present":True, "image":image_to_b64(drawn_img), "labs":labels, "vals": vals})
+# return json.dumps({"face_present":True, "image":image_to_b64(drawn_img), "emodictlabels":emodict.keys(), "emodictvals": [x[1] for x in list(emodict.items())]})
 
 def get_face_detection(request):
 
