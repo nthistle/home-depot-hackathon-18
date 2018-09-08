@@ -1,11 +1,11 @@
-body{
+body {
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
-	background-color: #315f70;
+	background-color: #0c0e30; /* black; */ /* #315f70; */
 	color: white;
 	font-family: 'Raleway', sans-serif;
 }
@@ -69,6 +69,125 @@ body{
   /* width: auto; */
   /* height: auto; */
 /* } */
+
+.topmain {
+  width: 90%;
+  height: 70%;
+  position: absolute;
+  left: 5%;
+  top: 0;
+  background-color: #0c0e30; /* red; */
+}
+
+.bottommain {
+  width: 90%;
+  height: 30%;
+  position: absolute;
+  left: 5%;
+  bottom: 0;
+  background-color: #0c0e30; /* blue; */
+}
+
+.videopanel {
+  width: 63%;
+  position: absolute;
+  left: 30px;
+  top: 15px;
+  bottom: 15px;
+  padding: 5px;
+  padding-top: 15px;
+  background-color: #315f70; /* yellow; */
+}
+
+.toptarget {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  margin: 15px;
+  bottom: 100px;
+  background-color: black; /*#315f70; /* yellow; */
+}
+
+.buttontarget {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: 15px;
+  height: 80px;
+  background-color: #315f70; /* yellow; */
+}
+
+.targetpanel {
+  width: 30%;
+  position: absolute;
+  right: 30px;
+  top: 15px;
+  bottom: 15px;
+  padding: 5px;
+  background-color: #315f70; /* yellow; */
+}
+
+.monitorpanel {
+  position: absolute;
+  width: 425px;
+  left: 30px;
+  top: 15px;
+  bottom: 15px;
+  padding: 5px;
+  background-color: #315f70; /* yellow; */
+}
+
+.scorepanel {
+  position: absolute;
+  width: 619px;
+  left: 500px;
+  top: 15px;
+  bottom: 15px;
+  padding: 5px;
+  padding-left: 20px;
+  padding-top: 20px;
+  background-color: #315f70; /* yellow; */
+}
+
+h1 {
+  font-size: 60pt;
+  margin: 0px;
+}
+
+h2 {
+  font-size: 30pt;
+  margin: 0px;
+}
+
+.matchpanel {
+  width: 30%;
+  position: absolute;
+  right: 30px;
+  top: 15px;
+  bottom: 15px;
+  padding: 5px;
+  padding-left: 20px;
+  padding-top: 20px;
+  background-color: #315f70; /* yellow; */
+}
+
+#lbutton {
+  position: absolute;
+  left: 0px;
+}
+
+#rbutton {
+  position: absolute;
+  right: 0px;
+}
+
+button {
+  font-size: 20pt;
+  width: 50%;
+  height: 100%;
+}
 
 .container {
   top: 0;
