@@ -109,7 +109,7 @@
 	  	photo.setAttribute('src', data.image);
 		}
 		if (data.emote_score){
-			// document.getElementById("scorebox").setText(data.emote_score);
+			document.getElementById("scorebox").setText(data.emote_score);
 			var ctx = document.getElementById("scoreChart").getContext("2d");
 			console.log(data.emote_score);
 			var myChart = new Chart(ctx, {
@@ -120,7 +120,7 @@
 								data: [data.emote_score, 0],
 								backgroundColor: [
 									'rgba(255, 99, 132, 1)',
-									'rgba(54, 162, 235, 1)',
+									'rgba(54, 162, 235, 1	)',
 									
 							],
 							borderColor: [
