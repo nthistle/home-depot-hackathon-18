@@ -32,12 +32,10 @@ EmoPY
 from PIL import Image
 from keras.models import load_model
 
-model = load_model("emotemodel.h5")
-
 from scipy.misc import imresize
 
 
-def get_face_detection2(request, fd):
+def get_face_detection2(request, fd, model, cur_emote_profile):
 
 	b64_str = process_request_to_b64(request)
 	bytes_bgr = io.BytesIO(base64.b64decode(b64_str))
@@ -76,6 +74,7 @@ def get_face_detection2(request, fd):
 		print(kill_me[i],"%0.3f"%pdict[0,i])
 		emodict[kill_me[i]] = pdict[0,i]
 	print()
+
 	
 	labels = []
 	vals = []
@@ -95,7 +94,24 @@ def get_face_detection2(request, fd):
 	#drawn_img = fd.detect_and_draw(img, 2)
 
 	drawn_img[:,:,0], drawn_img[:,:,2] = drawn_img[:,:,2].copy(), drawn_img[:,:,0].copy()
-	return json.dumps({"face_present":True, "image":image_to_b64(drawn_img), "labs":labels, "vals": vals})
+
+	good_stuff = {"face_present":True, "image":image_to_b64(drawn_img), "labs":labels, "vals": vals}
+
+	if cur_emote_profile != None:
+		within_range = 0.1
+		in_range_count = 0
+		of_possible = 0
+		for a,b in zip(pdict, cur_emote_profile):
+			if abs(a-b) < within_range:
+				in_range_count += 1
+			else:
+				in_range_count += (1 - (abs(a-b)-within_range)) * 0.5
+			if b > within_range:
+				of_possible += 1
+		good_stuff["emote_score"] = (in_range_count / of_possible)
+
+	return json.dumps(good_stuff)
+
 # return json.dumps({"face_present":True, "image":image_to_b64(drawn_img), "emodictlabels":emodict.keys(), "emodictvals": [x[1] for x in list(emodict.items())]})
 
 def get_face_detection(request):
