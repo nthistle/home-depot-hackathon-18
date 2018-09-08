@@ -81,7 +81,7 @@ def get_face_detection2(request, fd):
 	vals = []
 	for key, val in emodict.items():
 		labels.append(key)
-		vals.append(Decimal(float(val)))
+		vals.append(int(100 * float(val)))
 
 
 
@@ -95,16 +95,9 @@ def get_face_detection2(request, fd):
 	#drawn_img = fd.detect_and_draw(img, 2)
 
 	drawn_img[:,:,0], drawn_img[:,:,2] = drawn_img[:,:,2].copy(), drawn_img[:,:,0].copy()
-	return json.dumps({"face_present":True, "image":image_to_b64(drawn_img), "labs":labels, "vals": vals}, cls=DecimalEncoder)
+	return json.dumps({"face_present":True, "image":image_to_b64(drawn_img), "labs":labels, "vals": vals})
 # return json.dumps({"face_present":True, "image":image_to_b64(drawn_img), "emodictlabels":emodict.keys(), "emodictvals": [x[1] for x in list(emodict.items())]})
-class DecimalEncoder(json.JSONEncoder):
-    def _iterencode(self, o, markers=None):
-        if isinstance(o, decimal.Decimal):
-            # wanted a simple yield str(o) in the next line,
-            # but that would mean a yield on the line with super(...),
-            # which wouldn't work (see my comment below), so...
-            return (str(o) for o in [o])
-        return super(DecimalEncoder, self)._iterencode(o, markers)
+
 def get_face_detection(request):
 
 	img = request_to_image(request)
