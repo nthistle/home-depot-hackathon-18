@@ -18,6 +18,11 @@ def serve_main_page():
 	return render_template("index.html")
 
 
+@app.route("/landing")
+def serve_landing():
+	return render_template("landing.html")
+
+
 @app.route("/api")
 def serve_api():
 	print("serving the api......")

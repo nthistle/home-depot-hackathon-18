@@ -1,0 +1,76 @@
+.section {
+  text-align:center;
+  font-size: 3em;
+}
+
+body{
+	font-family: 'Raleway', sans-serif;
+	color: white;
+}
+
+#title_page{
+	font-size: 4em;
+	width: 50%;
+	margin-left: 25%;
+}
+
+#instr_page{
+	font-size: 1em;
+	width: 60%;
+	margin-left: 20%;
+}
+
+#get_started{
+	border-radius: 25px;
+    border: 2px solid white;
+	box-shadow: 0 0 0 2px white;
+	width: 20%;
+	margin-left: 40%;
+}
+
+#get_started:hover{
+	background-color: white;
+	color: #3c5072;
+}
+
+#get_started_link{
+	text-decoration: none;
+	color: white;
+}
+
+#footer{
+	position: absolute;
+	width: 99.5%;
+	left: 5px;
+	bottom: 5px;
+	text-align: left;
+}
+#footer2{
+	position: absolute;
+	width: 99.5%;
+	left: 5px;
+	bottom: -99.5%;
+	text-align: left;
+}
+
+#play_button{
+
+	border-radius: 25px;
+    border: 2px solid white;
+	box-shadow: 0 0 0 2px white;
+	width: 15%;
+	margin-left: 42.5%;
+	height: 80px;
+	padding-top: 1%;
+}
+
+#play_button:hover{
+	background-color: white;
+	color: #3c5072;
+}
+
+
+#play_button_link{
+	text-decoration: none;
+	color: white;
+}

@@ -5,25 +5,44 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	<link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
-    <title>Face Matcher</title>
+    <title>Make a Face!</title>
 
 </head>
 <body>
+	
 
+<!-- 	<div id="container">
+		<div id="wrapper">
+			<img id="target" src="{{ url_for('static', filename='img/gbush.jpg') }}">
+			<div class="camera">
+				<video poster="{{ url_for('static', filename='img/video_loading.png') }}" id="video" muted="muted">Video stream not available.</video>
+			</div>
+
+			<canvas id="canvas"></canvas>
+			<img id="result">
+		</div>
+		
+	</div> -->
 	<h1>
 		Face Matcher
 	</h1>
 
-	<div class="camera">
-		<video id="video" muted="muted">Video stream not available.</video>
-		<button id="startbutton">Take photo</button>
-	</div>
+	<div class="parent">  
+		
+		<div class="left">
+		  <img id="target" src="{{ url_for('static', filename='img/gbush.jpg') }}">
+		</div>
+		<div class="right">
+		  	<div class="camera">
+		    	<video poster="{{ url_for('static', filename='img/video_loading.png') }}" id="video" muted="muted">Video stream not available.</video>
+			</div>
 
-	<canvas id="canvas"></canvas>
-	<div id="out_container">
-		<img id="result">
-	</div>
-	
+			<canvas id="canvas"></canvas>
+			<img id="result">
+		</div>
+	</div>  
+
+
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
 	<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 

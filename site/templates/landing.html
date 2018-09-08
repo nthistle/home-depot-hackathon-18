@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<link href="{{ url_for('static', filename='css/fullpage.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', filename='css/landingstyles.css') }}" rel="stylesheet">
+
+    <title>Face Matcher</title>
+
+</head>
+<body>
+
+	<div id="fullpage">
+		<div class="section">
+	    	<div id="title_page">
+	        	Make a Face!
+	        </div>
+	        <br/>
+	        <br/>
+	        <a id="play_button_link" href="#instructions/0">
+	        	<div id="play_button">
+	        		Play
+	        	</div>
+        	</a>
+	    </div>
+	    <div class="section">
+	        <div class="slide" data-anchor="slide1">
+	        	<div id="instr_page">
+		        	How to play:
+			        It's simple. You'll see a face appear on the left side of your screen.
+			    </div>
+	    	</div>
+	    	<div class="slide" data-anchor="slide2">
+	    		<div id="instr_page">
+		        	All you have to do is mimic that face to score points! For each face, you have """X""" seconds to attempt your best mimicry. 
+		        </div>
+	        <div class="slide" data-anchor="slide3">
+	        	<div id="instr_page">
+		        	You can also scroll through different faces to choose one you'd like to imitate. Have fun!
+	        	</div>
+	        	<br/>
+	        	<br/>
+	        	<br/>
+	        	<a id="get_started_link" href="/">
+		        	<div id="get_started">
+		        		Get Started!
+		        	</div>
+	        	</a>
+	    	</div>
+	    </div>
+	    
+	</div>
+	<div id="footer">
+    	Made with ❤️ by Team Shallow Learning. Code Coverage: 100%.
+    </div>
+    <div id="footer2">
+    	Made with ❤️ by Team Shallow Learning. Code Coverage: 100%.
+    </div>
+
+	<script src="{{ url_for('static', filename='js/fullpage.js') }}"></script>
+	<script>
+	new fullpage('#fullpage', {
+	  	sectionsColor: ['#3c5072', '#315f70'],
+		loopHorizontal: false,
+		anchors:['landing', 'instructions']
+	});
+	</script>
+
+</body>
+</html>
