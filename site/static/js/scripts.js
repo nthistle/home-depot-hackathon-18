@@ -108,10 +108,10 @@
 		var ctx = document.getElementById("emotionChart");
 		if (data.emodict){
 			console.log(data.emodict);
-			var myChart = new Chart(ctx, {
-				type: 'bar',
-				data: data.emodict,
-		});
+			// var myChart = new Chart(ctx, {
+			// 	type: 'bar',
+			// 	data: data.emodict,
+			// });
 		}
 	  takepicture();
 	}
