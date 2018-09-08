@@ -154,7 +154,7 @@ def compare_all_feats(orig_features, our_features):
     le = compare_left_eyebrow(orig_features, our_features)
     re = compare_right_eyebrow(orig_features, our_features)
     avg = (mw + mh + le + re) / 4.0
-    return (avg, mw, mh, le, re)
+    return (abs(avg)**2, abs(mw), abs(mh), abs(le), abs(re))
 
 
 
