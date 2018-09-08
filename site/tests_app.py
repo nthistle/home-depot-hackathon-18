@@ -24,9 +24,41 @@ class TestApp(unittest.TestCase):
   def tearDown(self):
     pass 
 
-  # test method
-  def test_equal_numbers(self):
-    self.assertEqual(2, 2) 
+  # TEST DECODING BASE64 STRINGS
+  def test_decode_base64(self):
+    from face_detection import decode_b64
+
+    sample_request = "data:image/png;base64,QUJDREU="
+    outString = "ABCDE"
+    self.assertEqual(decode_b64(sample_request), outString) 
+
+
+  # TEST ENCODING PICTURE AS B64 STRING
+  def test_encode_base64(self):
+    from face_detection import image_to_b64
+    import numpy as np
+
+    in_vec = np.array([[1, 0],
+                      [0, 1]])
+
+    outString = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAAAAABX3VL4AAAADklEQVQIHWNk/M/IwAgABBEBBJhoyrMAAAAASUVORK5CYII="
+    self.assertEqual(image_to_b64(in_vec), outString) 
+  
+  def test_normalize_distance(self): #finds distance between two points
+    from normalize import find_distance
+    self.assertEqual(find_distance((-2, 2), (4, 2)), 6)
+  
+  def test_normalize_mid(self): #finds midpoint between two points
+    from normalize import find_mid
+    self.assertEqual(find_mid((-2, 2), (4, 2)), (1,2))
+  
+  def test_normalize_scale(self): #scales two points about their midpoint
+    from normalize import scale
+    self.assertEqual(scale(2.4, (64, 34), (36, 34)), ((83, 34), (16, 34)))
+  
+  # def test_normalize_factor(self): #finds factor (of size) between two feature points 
+  #   from normalize import find_factor
+    # self.assertEqual(orig_feat_point, our_feat_point):
 
 # runs the unit tests in the module
 if __name__ == '__main__':

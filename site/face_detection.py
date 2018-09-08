@@ -169,6 +169,14 @@ def image_to_b64(image):
 	return fin_str
 
 
+def decode_b64(request):
+	raw_str = request
+	front_end_padding = "data:image/png;base64,"
+	fin_str = raw_str[len(front_end_padding):]
+	bytes_bgr = io.BytesIO(base64.b64decode(fin_str)).read().decode("utf-8")
+	return bytes_bgr
+
+
 def request_to_image(request):
 
 	b64_str = process_request_to_b64(request)
@@ -189,3 +197,4 @@ def request_to_image(request):
 	img[:,:,2] = blue
 
 	return img
+
