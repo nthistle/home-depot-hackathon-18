@@ -7,6 +7,21 @@ import io
 
 import json
 
+'''
+EmoPY
+'''
+import keras
+import lasagne
+import matplotlib
+import scikit-image
+import scikit-learn
+import scikit-neuralnetwork
+import scipy
+import tensorflow
+import opencv-python
+import h5py
+import pydot
+import graphviz
 
 def get_face_detection(request):
 
