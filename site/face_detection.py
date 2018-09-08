@@ -76,8 +76,8 @@ def get_face_detection2(request, fd):
 		print(kill_me[i],"%0.3f"%pdict[0,i])
 		emodict[kill_me[i]] = pdict[0,i]
 	print()
-
 	
+
 
 
 
