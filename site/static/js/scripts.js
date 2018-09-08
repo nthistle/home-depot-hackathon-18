@@ -108,15 +108,14 @@
 	  	//console.log(data.image);
 	  	photo.setAttribute('src', data.image);
 		}
-		if (data.labs){
+		if (data.emote_score){
 			var ctx = document.getElementById("scoreChart").getContext("2d");
 			console.log(data.labs);
 			var myChart = new Chart(ctx, {
 				type: 'horizontalbar',
 				data: {
-						labels: data.labs,
 						datasets: [{
-								data: data.vals,
+								data: data.emote_score,
 								backgroundColor: [
 									'rgba(255, 99, 132, 0.2)',
 									'rgba(54, 162, 235, 0.2)',
