@@ -135,6 +135,9 @@
 							borderWidth: 1
 						}]
 				},
+				options: {
+					animation: false,
+				}
 		});
 		}
 	  takepicture();
