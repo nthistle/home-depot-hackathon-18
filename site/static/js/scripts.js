@@ -110,9 +110,9 @@
 		}
 		if (data.emote_score){
 			var ctx = document.getElementById("scoreChart").getContext("2d");
-			console.log(data.labs);
+			console.log(data.emote_score);
 			var myChart = new Chart(ctx, {
-				type: 'horizontalbar',
+				type: 'horizontalBar',
 				data: {
 						datasets: [{
 								data: data.emote_score,
