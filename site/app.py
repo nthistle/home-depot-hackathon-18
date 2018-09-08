@@ -29,11 +29,6 @@ def serve_landing():
 	return render_template("landing.html")
 
 
-@app.route("/api")
-def serve_api():
-	print("serving the api......")
-
-
 # @socketio.on('checkface')
 # def check_face(json):
 #     #print('received json: ' + str(json))
@@ -52,7 +47,6 @@ def serve_api():
 def check_face():
 	return get_face_detection2(request, fd)
 	#return get_face_detection(request)
-
 
 
 if __name__ == '__main__':
