@@ -42,7 +42,8 @@ class TestApp(unittest.TestCase):
                       [0, 1]])
 
     outString = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAAAAABX3VL4AAAADklEQVQIHWNk/M/IwAgABBEBBJhoyrMAAAAASUVORK5CYII="
-    self.assertEqual(image_to_b64(in_vec), outString) 
+    self.assertEqual(image_to_b64(in_vec), outString)
+
   
   def test_normalize_distance(self): #finds distance between two points
     from normalize import find_distance
