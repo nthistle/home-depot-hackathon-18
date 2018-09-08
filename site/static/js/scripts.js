@@ -134,7 +134,12 @@
 									'rgba(255,99,132,1)',
 									'rgba(54, 162, 235, 1)',
 							],
-							borderWidth: 1
+							borderWidth: 1,
+							fontColor: [
+								'rgba(255, 99, 132, 1)',
+								'rgba(54, 162, 235, 1)',
+								
+						],
 						}]
 				},
 				options: {
