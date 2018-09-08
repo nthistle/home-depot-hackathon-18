@@ -10,24 +10,24 @@ import json
 '''
 EmoPY
 '''
-import keras
-import lasagne
-import matplotlib
-import scikit-image
-import scikit-learn
-import scikit-neuralnetwork
-import scipy
-import tensorflow
-import opencv-python
-import h5py
-import pydot
-import graphviz
+#import keras
+#import lasagne
+#import matplotlib
+#import scikit-image
+#import scikit-learn
+#import scikit-neuralnetwork
+#import scipy
+#import tensorflow
+#import opencv-python
+#import h5py
+#import pydot
+#import graphviz
 
 
 from fermodel import FERModel
 
-model = FERModel(target_emotions, verbose=True)
 target_emotions = ['anger', 'fear', 'surprise', 'calm']
+model = FERModel(target_emotions, verbose=True)
 
 
 def get_face_detection2(request, fd):
