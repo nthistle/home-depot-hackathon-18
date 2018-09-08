@@ -91,7 +91,7 @@ def get_emote_pf(m):
 
 
 
-imlist = ["harn.jpg","rosen.png","rosh.jpg"]
+imlist = ["harn.jpg","rosen.png","rosh.jpg", "001.png", "002.jpg", "003.jpg", "004.png", "005.jpg"]
 
 @app.route("/get_target/<num>")
 def get_target(num):
