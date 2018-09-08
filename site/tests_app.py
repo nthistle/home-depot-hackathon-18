@@ -35,24 +35,14 @@ class TestApp(unittest.TestCase):
 
   # TEST ENCODING PICTURE AS B64 STRING
   def test_encode_base64(self):
-    from face_detection import decode_b64
+    from face_detection import image_to_b64
+    import numpy as np
 
-    in_vec = [[255, 255, 135, 1]]
+    in_vec = np.array([[1, 0],
+                      [0, 1]])
 
-    sample_request = "data:image/png;base64,QUJDREU="
-    outString = "ABCDE"
-    self.assertEqual(decode_b64(sample_request), outString) 
-
-  # # test method
-  # def test_encode_decode_base64(self):
-
-  #   from face_detection import image_to_b64, request_to_image
-
-  #   testString = "data:image/png;base64,QUJDREVGR0hJSktMTU5PUFFSU1RVVldYWVoxMjM0NTY3ODkwMDk4NzY1NDMyMSFAIyQl"
-
-  #   outString = ""
-
-  #   self.assertEqual(2, 2) 
+    outString = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAAAAABX3VL4AAAADklEQVQIHWNk/M/IwAgABBEBBJhoyrMAAAAASUVORK5CYII="
+    self.assertEqual(image_to_b64(in_vec), outString) 
   
   def test_normalize_distance(self): #finds distance between two points
     from normalize import find_distance
