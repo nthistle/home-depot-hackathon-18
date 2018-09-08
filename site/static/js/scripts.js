@@ -1,7 +1,6 @@
-var emote_score = 0;
-var face_score = 0;
 (function() {
-
+	var emote_score = 0;
+	var face_score = 0;
   var width = 1090;    // set
   var height = 0;     // auto-scaled 
 
@@ -110,45 +109,9 @@ var face_score = 0;
 	  	//console.log(data.image);
 	  	photo.setAttribute('src', data.image);
 		}
-		if (data.face_score) {
-			face_score = data.face_score;
-			var ctx = document.getElementById("scoreChart").getContext("2d");
-			console.log(data.emote_score);
-			var myChart = new Chart(ctx, {
-				type: 'horizontalBar',
-				data: {
-						labels: ["Emotion", "Position"],
-						datasets: [{
-								data: [emote_score, data.face_score],
-								backgroundColor: [
-									'rgba(255, 99, 132, 1)',
-									'rgba(54, 162, 235, 1	)',
-									
-							],
-							borderColor: [
-									'rgba(255,99,132,1)',
-									'rgba(54, 162, 235, 1)',
-							],
-							borderWidth: 1
-						}]
-				},
-				options: {
-					animation: false,
-					scales: {
-						xAxes: [{
-								display: true,
-								ticks: {
-										suggestedMax: 1,    // minimum will be 0, unless there is a lower value.
-										// OR //
-										beginAtZero: true   // minimum value will be 0.
-								}
-						}]
-				}
-				}
-		});
-		}
 		if (data.emote_score){
 			emote_score = data.emote_score;
+			face_score = data.face_score;
 			// document.getElementById("scorebox").setText(data.emote_score);
 			var ctx = document.getElementById("scoreChart").getContext("2d");
 			console.log(data.emote_score);
@@ -157,10 +120,10 @@ var face_score = 0;
 				data: {
 						labels: ["Emotion", "Position"],
 						datasets: [{
-								data: [data.emote_score, face_score],
+								data: [emote_score, face_score],
 								backgroundColor: [
 									'rgba(255, 99, 132, 1)',
-									'rgba(54, 162, 235, 1	)',
+									'rgba(54, 162, 235, 1)',
 									
 							],
 							borderColor: [
