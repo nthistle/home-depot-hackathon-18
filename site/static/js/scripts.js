@@ -1,6 +1,6 @@
 (function() {
 
-  var width = 600;    // set
+  var width = 1090;    // set
   var height = 0;     // auto-scaled 
 
 
@@ -8,14 +8,14 @@
 
   var video = null;
   var canvas = null;
-  var startbutton = null;
+  //var startbutton = null;
   var photo = null;
   var socket = null;
 
   function startup() {
 	video = document.getElementById('video');
 	canvas = document.getElementById('canvas');
-	startbutton = document.getElementById('startbutton');
+	//startbutton = document.getElementById('startbutton');
 	photo = document.getElementById('result');
 	// socket = io.connect('http://localhost:5000');
 	// socket.on('checkface_resp', function (data) {
