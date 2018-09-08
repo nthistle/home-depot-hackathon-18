@@ -12,26 +12,26 @@ def get_face_detection(request):
 
 	img = request_to_image(request)
 
-	# face_cascade = cv2.CascadeClassifier('classifiers/haarcascade_frontalface_default.xml')
-	# gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+	face_cascade = cv2.CascadeClassifier('classifiers/haarcascade_frontalface_default.xml')
+	gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-	# faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-
-	# if(len(faces)==1):
-	# 	ret = {"face_present": True, "image": None}
-	# 	for (x,y,w,h) in faces:
-	# 		cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
-	# 	ret["image"] = image_to_b64(img)
-	# else:
-	# 	ret = {"face_present": False}
-
-	faces = [(200, 200, 100, 100)]
+	faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 
 	if(len(faces)==1):
 		ret = {"face_present": True, "image": None}
 		for (x,y,w,h) in faces:
 			cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
 		ret["image"] = image_to_b64(img)
+	else:
+		ret = {"face_present": False}
+
+	# faces = [(200, 200, 100, 100)]
+
+	# if(len(faces)==1):
+	# 	ret = {"face_present": True, "image": None}
+	# 	for (x,y,w,h) in faces:
+	# 		cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
+	# 	ret["image"] = image_to_b64(img)
 	
 	return json.dumps(ret)
 
@@ -56,6 +56,12 @@ def request_to_image(request):
 	bytes_bgr = io.BytesIO(base64.b64decode(b64_str))
 
 	img = imageio.imread(bytes_bgr)
+
+	#0.15 red, 0.65 green, 0.2 blue
+
+	img2 = img.astype(np.float64)
+	img2 = 0.15 * img2[...,0] + 0.65 * img2[...,1] + 0.2 * img2[...,2]
+
 
 	red = img[:,:,2].copy()
 	blue = img[:,:,0].copy()

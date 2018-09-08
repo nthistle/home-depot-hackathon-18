@@ -10,12 +10,25 @@
   var canvas = null;
   var startbutton = null;
   var photo = null;
+  var socket = null;
 
   function startup() {
 	video = document.getElementById('video');
 	canvas = document.getElementById('canvas');
 	startbutton = document.getElementById('startbutton');
 	photo = document.getElementById('result');
+	// socket = io.connect('http://localhost:5000');
+	// socket.on('checkface_resp', function (data) {
+	//   	data = JSON.parse(data);
+	//   	if(data.face_present){
+	// 		photo.setAttribute('src', data.image);
+	//   	}
+	// 	takepicture();
+	//   });
+	// socket.on('disconnect', function() {
+
+	// });
+
 
 	navigator.getMedia = ( navigator.getUserMedia ||
 						   navigator.webkitGetUserMedia ||
@@ -50,6 +63,7 @@
   }
 
 	function init_picture_taking(){
+
 	  if (!(height && width)){
 	    setTimeout(init_picture_taking,100);
 	  } else {
@@ -95,6 +109,13 @@
 	}
 
   } 
+
+
+   function SCKT_sendFrame(frame){
+   		console.log("SENDING DATA OUT");
+        socket.emit('checkface', { 'image': frame });
+  } 
+
 
   // Set up our event listener to run the startup process
   // once loading is complete.
