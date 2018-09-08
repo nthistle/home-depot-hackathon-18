@@ -26,6 +26,17 @@ class FaceDetector:
 		#print(kp)
 		return kp
 
+	def identify_keypoints_gs(self, img):
+		img = img.astype(np.float64)
+		img /= 255.
+		#print(img_grayscale.max())
+		#print(img_grayscale.min())
+		#print(img_grayscale.shape)
+		#Image.fromarray(255*img_grayscale).show()
+		kp = self.model.predict(img[None,:,:,None])[0]
+		#print(kp)
+		return kp
+
 	# TODO: format these keypoints a bit
 
 	# This is mostly a testing method for now, assumes that img is RGB(A) and 450x600x3(4)

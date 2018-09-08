@@ -16,6 +16,8 @@ from PIL import Image
 
 import cv2
 
+from scipy.misc import imresize
+
 app = Flask(__name__)
 socketio = SocketIO(app)
 
@@ -26,8 +28,9 @@ fd.load_model()
 
 model = load_model("emotemodel.h5")
 
-global cur_emote_profile
+global cur_emote_profile, cur_face_profile
 
+cur_face_profile = None
 cur_emote_profile = None
 
 @app.route("/game")
@@ -66,7 +69,7 @@ def get_emote_pf(m):
 	faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 	if len(faces) == 0:
 		print(15*"BIG BAD THING HAPPENED UH OH\n")
-		return None
+		return None, None
 
 	target_face = faces[0]
 
@@ -87,35 +90,40 @@ def get_emote_pf(m):
 	for i in range(len(kill_me)):
 		print(kill_me[i],"%0.3f"%pdict[0,i])
 
-	return pdict
+
+	kpp = fd.identify_keypoints_gs(imresize(face_cropped_small_gray,(96,96)))
+
+	kpp = [48 + 48 * x for x in kpp]
+
+	return pdict, kpp
 
 
 
-imlist = ["harn.jpg","rosen.png","rosh.jpg", "001.png", "002.jpg", "003.jpg", "004.png", "005.jpg"]
+imlist = ["rosen.png", "rosh.png", "pratt.png", "001.png", "002.png", "003.png", "004.png", "005.png"]
 
 @app.route("/get_target/<num>")
 def get_target(num):
-	global cur_emote_profile
+	global cur_emote_profile, cur_face_profile
 	imm = "static/img/" + imlist[int(num)]
 
 	print("HELLO? WE'RE IN GET_TARGET NUM")
-	cur_emote_profile = get_emote_pf(imm)
+	cur_emote_profile, cur_face_profile = get_emote_pf(imm)
 	## UPDATE GLOBAL SHIT
 	return send_file(imm, mimetype="image/png")
 
 @app.route("/update_to/<num>")
 def update_to(num):
-	global cur_emote_profile
+	global cur_emote_profile, cur_face_profile
 	imm = "static/img/" + imlist[int(num)]
-	cur_emote_profile = get_emote_pf(imm)
+	cur_emote_profile, cur_face_profile = get_emote_pf(imm)
 	return ""
 
 
 @app.route("/checkface", methods=["POST"])
 def check_face():
-	global cur_emote_profile
-	print("JAJAJAJA",cur_emote_profile)
-	return get_face_detection2(request, fd, model, cur_emote_profile)
+	global cur_emote_profile, cur_face_profile
+	print("JAJAJAJA",cur_emote_profile,cur_face_profile)
+	return get_face_detection2(request, fd, model, cur_emote_profile, cur_face_profile)
 	#return get_face_detection(request)
 
 

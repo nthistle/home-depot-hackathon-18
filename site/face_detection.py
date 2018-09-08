@@ -36,7 +36,7 @@ from keras.models import load_model
 from scipy.misc import imresize
 
 
-def get_face_detection2(request, fd, model, cur_emote_profile):
+def get_face_detection2(request, fd, model, cur_emote_profile, cur_face_profile):
 
 	b64_str = process_request_to_b64(request)
 	bytes_bgr = io.BytesIO(base64.b64decode(b64_str))
@@ -109,8 +109,19 @@ def get_face_detection2(request, fd, model, cur_emote_profile):
 				else:
 					in_range_count += (1 - (abs(a-b)-within_range)) * 0.5
 				of_possible += 1
+		print(in_range_count, of_possible)
 		good_stuff["emote_score"] = (in_range_count / of_possible)
 		print("EMOTE_SCORE:",good_stuff["emote_score"])
+
+	if not cur_face_profile is None:
+		kpp = fd.identify_keypoints_gs(imresize(face_cropped_small_gray,(96,96)))
+
+		kpp = [48 + 48 * x for x in kpp]
+
+		concl = data_to_conclusion(cur_face_profile, kpp)
+
+		good_stuff["face_score"] = concl[0]
+		print("FACE_SCORE:", good_stuff["face_score"])
 
 	return json.dumps(good_stuff)
 
