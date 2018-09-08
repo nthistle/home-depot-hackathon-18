@@ -61,7 +61,7 @@ def get_face_detection2(request, fd):
 	face_size = int(1.05*max(target_face[2:]))
 	loc = (target_face_center[1] - face_size//2, target_face_center[0] - face_size//2)
 	#drawn_img = fd.detect_and_draw_loc(img, target_face[:2][::-1], max(target_face[2:]), 2)
-	drawn_img = fd.detect_and_draw_loc(img, loc, face_size, 2)
+	drawn_img = fd.detect_and_draw_loc(img, loc, face_size, 4)
 
 	face_cropped = img[loc[0]:loc[0]+face_size,loc[1]:loc[1]+face_size]
 

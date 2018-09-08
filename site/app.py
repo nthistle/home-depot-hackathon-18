@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, send_file
 from flask_cors import CORS
 
 from face_detection import get_face_detection
@@ -40,6 +40,12 @@ def serve_landing():
 # def is_alive_check(data):
 # 	emit('is_alive_resp', json.dumps({data: 'SOCKET CONNECTED'}), json=True)
 # 	print("Socket connection is alive")
+
+@app.route("/get_target/<num>")
+def get_target(num):
+	imlist = ["harn.jpg","rosen.png","rosh.jpg"]
+	## UPDATE GLOBAL SHIT
+	return send_file("static/img/" + imlist[int(num)], mimetype="image/png")
 
 
 

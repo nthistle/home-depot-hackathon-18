@@ -12,11 +12,14 @@
   var photo = null;
   var socket = null;
 
+  var counter = 0;
+
   function startup() {
 	video = document.getElementById('video');
 	canvas = document.getElementById('canvas');
 	//startbutton = document.getElementById('startbutton');
 	photo = document.getElementById('result');
+	fetch_and_update();
 	// socket = io.connect('http://localhost:5000');
 	// socket.on('checkface_resp', function (data) {
 	//   	data = JSON.parse(data);
@@ -121,3 +124,15 @@
   // once loading is complete.
   window.addEventListener('load', startup, false);
 })();
+
+
+  let counter = 0;
+
+  function fetch_and_update() {
+  	console.log('trying with counter=' + counter);
+  	document.getElementById('targetim').setAttribute('src', "http://localhost:5000/get_target/" + counter);
+  	counter += 1;
+  	//var xhr = new XMLHttpRequest;
+  	//xhr.open("GET", "http://localhost:5000/get_target/" + counter)
+  	//xhr.
+  }

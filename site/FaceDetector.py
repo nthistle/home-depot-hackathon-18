@@ -44,10 +44,10 @@ class FaceDetector:
 				img[kp_y_real-size:kp_y_real+size+1, kp_x_real-size:kp_x_real+size+1] = 255,0,0
 			except:
 				pass
-		img[loc[0]:loc[0]+2,loc[1]:loc[1]+face_size] = 255,0,0
-		img[loc[0]+face_size-2:loc[0]+face_size,loc[1]:loc[1]+face_size] = 255,0,0
-		img[loc[0]:loc[0]+face_size,loc[1]:loc[1]+2] = 255,0,0
-		img[loc[0]:loc[0]+face_size,loc[1]+face_size-2:loc[1]+face_size] = 255,0,0
+		img[loc[0]:loc[0]+4,loc[1]:loc[1]+face_size] = 255,0,0
+		img[loc[0]+face_size-4:loc[0]+face_size,loc[1]:loc[1]+face_size] = 255,0,0
+		img[loc[0]:loc[0]+face_size,loc[1]:loc[1]+4] = 255,0,0
+		img[loc[0]:loc[0]+face_size,loc[1]+face_size-4:loc[1]+face_size] = 255,0,0
 		return img
 
 
