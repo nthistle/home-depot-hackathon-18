@@ -113,7 +113,8 @@
 			emote_score = data.emote_score;
 			face_score = data.face_score;
 			if (((emote_score + face_score) / 2) > 0.8){
-					alertify.success('You got it!');
+					//alertify.success('You got it!');
+					fetch_and_update();
 			}
 			// document.getElementById("scorebox").setText(data.emote_score);
 			var ctx = document.getElementById("scoreChart").getContext("2d");
