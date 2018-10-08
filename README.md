@@ -1,2 +1,2 @@
-# home-depot-hackathon-18
-Team Shallow Learning's entry for the Home Depot Deep Learning Hackathon 2018
+# Home Depot Hackathon 2018
+Team Shallow Learning's 1st place winning entry for the Home Depot Deep Learning Hackathon 2018. The task was to create a game where a user would need to mimic an expression in a photo of another person shown to them in order to get points. Our approach utilized two networks for determining 'expression similarity', one to create a vector of emotional coefficients and another to identify keypoints in faces and infer structure. Both networks were ran on each face (the provided one, and the one the user was making), and similarity metrics derived for each corresponding feature (emotion and structure) and presented to the user. Additionally, our approach ran in real-time with an elegant frontend, allowing the user to see how well they're doing in an interactive manner.
